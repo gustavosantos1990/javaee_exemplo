@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+
+    <ui:composition template="/templates/mainTemplate.xhtml">
+        <ui:define name="content">
+
+            <h:form id="commands">
+                <p:commandButton action="pacienteCrud.xhtml?faces-redirect=false" value="Novo Paciente"/>
+                <p:commandButton rendered="#{not empty pacienteMB.paciente.id}"
+                                 actionListener="#{pacienteMB.redirectForCrud()}"
+                                 value="Editar Paciente"/>
+            </h:form>
+
+            <h:form id="listagemPacientes">
+                <p:dataTable value="#{pacienteMB.pacientes}" var="pacienteVar"
+                             selection="#{pacienteMB.paciente}" selectionMode="single"
+                             rowKey="#{pacienteVar.id}">
+                    <p:ajax event="rowSelect" update="commands" process="@this"/>
+                    <p:column headerText="ID">
+                        <h:outputText value="#{pacienteVar.id}"/>
+                    </p:column>
+                    <p:column headerText="Nome">
+                        <h:outputText value="#{pacienteVar.nome}"/>
+                    </p:column>
+                    <p:column headerText="Sexo">
+                        <h:outputText value="#{pacienteVar.sexo == 'M' ? 'Masculino' : 'Feminino'}"/>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

@@ -1,0 +1,6 @@
+com\test\server\beans\PacienteMB.class
+com\test\server\beans\util\ThemeSwitcherView.class
+com\test\server\beans\PacienteCrudMB.class
+com\test\server\validators\NameValidator.class
+com\test\server\beans\util\Theme.class
+com\test\server\beans\util\ThemeService.class
